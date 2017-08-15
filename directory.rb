@@ -1,4 +1,3 @@
-student_count = 11
 #All students listed in an array
 students = [
     "Dr. Hannibal Lecter",
@@ -14,7 +13,7 @@ students = [
     "Norman Bates"
     ]
 
-#And then printed.
+#And then printed.q
 puts "The students of Villains Academy"
 puts "---------------"
 puts students[0]
@@ -29,4 +28,4 @@ puts students[8]
 puts students[9]
 puts students[10]
 #finally, we print the count of the number of students.
-puts "Overall, we have #{student_count} great students."
+puts "Overall, we have #{students.count} great students."

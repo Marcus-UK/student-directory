@@ -4,10 +4,10 @@ def print_header
 end
 def print_students(students)
   students.each_with_index do |student, index|
-    if student[:name].start_with? "A"
-       puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)" 
+    if student[:name][0] == ("A" || "a")
+       puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
+      end
     end
-  end
 end
 def print_footer(students)
   puts "Overall, we have #{students.count} great students."
@@ -23,7 +23,7 @@ def input_students
   
   while !name.empty? do
     #While the name variable is not empty, the following code is repeated. Breaks if nothing is entered.
-    students << {name: :name, cohort: :november}
+    students << {name: name, cohort: :november}
     puts "Now we have #{students.count} students"
     name = gets.chomp
   end

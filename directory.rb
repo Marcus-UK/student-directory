@@ -21,6 +21,7 @@ def print_footer(students)
  students.count > 1 ?  "Overall, we have #{students.count} great students." : "We currently have #{students.count} great student."
 end
 
+
 def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
@@ -28,6 +29,7 @@ def input_students
   students = []
   
   name = gets.chomp
+  
   
   puts "What cohort are they part of?"
   
@@ -45,7 +47,7 @@ def input_students
   
   height = gets.chomp
   
-  
+
   while !name.empty? do
     #While the name variable is not empty, the following code is repeated. Breaks if nothing is entered.
     students << {name: name, cohort: cohort, nationality: nationality, height: height}
@@ -55,17 +57,25 @@ def input_students
     if name.empty?
       students
     else
+      puts "What cohort are they part of?"
+  
+        cohort = gets.chomp.to_sym
+          if cohort.empty?
+            cohort = "Undecided"
+          end
+    
       puts "What is their nationality?"
   
         nationality = gets.chomp
+        
   
       puts "And finally, how tall are they (in centimeters)?"
   
         height = gets.chomp
     end
-    end  
+  end  
     students
-  end
+end
 
 
 students = input_students  

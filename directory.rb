@@ -1,12 +1,12 @@
 def print_header
-  puts "The students of Villains Academy"
-  puts "---------------"
+  puts "The students of Villains Academy".center(50, "---")
+  puts "---------------".center(50)
 end
 def print_students(students) 
   i = 0
   while i < students.length do
-    puts "#{students[i][:name]} is #{students[i][:nationality]}. They are #{students[i][:height]} tall and they are
-     part of the #{students[i][:cohort]} cohort."
+    puts "#{students[i][:name]} is #{students[i][:nationality]}. They are #{students[i][:height]} tall and they are".center(50)
+    puts  "part of the #{students[i][:cohort]} cohort.".center(50)
     i += 1
   end
 end

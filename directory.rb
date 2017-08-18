@@ -2,17 +2,23 @@ def print_header
   puts "The students of Villains Academy".center(50, "---")
   puts "---------------".center(50)
 end
+
 def print_students(students) 
   i = 0
   while i < students.length do
-    puts "#{students[i][:name]} is #{students[i][:nationality]}. They are #{students[i][:height]} tall and they are".center(50)
-    puts  "part of the #{students[i][:cohort]} cohort.".center(50)
+    center_me("#{students[i][:name]} is #{students[i][:nationality]}. They are #{students[i][:height]} tall and they are")
+    center_me("part of the #{students[i][:cohort]} cohort.")
     i += 1
   end
 end
 
+def center_me(string)
+  puts string.center(50)
+end
+
+
 def print_footer(students)
-  puts "Overall, we have #{students.count} great students."
+ students.count > 1 ?  "Overall, we have #{students.count} great students." : "We currently have #{students.count} great student."
 end
 
 def input_students
@@ -22,6 +28,14 @@ def input_students
   students = []
   
   name = gets.chomp
+  
+  puts "What cohort are they part of?"
+  
+  cohort = gets.chomp.to_sym
+    if cohort.empty?
+      cohort = "Undecided"
+    end
+    
   
   puts "What is their nationality?"
   
@@ -34,7 +48,7 @@ def input_students
   
   while !name.empty? do
     #While the name variable is not empty, the following code is repeated. Breaks if nothing is entered.
-    students << {name: name, cohort: :november, nationality: nationality, height: height}
+    students << {name: name, cohort: cohort, nationality: nationality, height: height}
     puts "Now we have #{students.count} students"
     puts "If necessary, enter another student's details below."
     name = gets.chomp
@@ -57,4 +71,4 @@ def input_students
 students = input_students  
 print_header
 print_students(students)
-print_footer(students)
+puts print_footer(students)

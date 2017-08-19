@@ -4,11 +4,15 @@ def print_header
 end
 
 def print_students(students) 
-  i = 0
-  while i < students.length do
-    center_me("#{students[i][:name]} is #{students[i][:nationality]}. They are #{students[i][:height]} tall and they are")
-    center_me("part of the #{students[i][:cohort]} cohort.")
-    i += 1
+  if students.count > 0
+    i = 0
+      while i < students.length do
+        center_me("#{students[i][:name]} is #{students[i][:nationality]}. They are #{students[i][:height]} tall and they are")
+        center_me("part of the #{students[i][:cohort]} cohort.")
+        i += 1
+      end
+  else
+    nil
   end
 end
 
@@ -77,8 +81,29 @@ def input_students
     students
 end
 
+def interactive_menu
+  
+  students = []
+  
+  loop do
+    puts "1. input the students"
+    puts "2. show the students"
+    puts "9. exit"
+    
+    selection = gets.chomp
+    
+    case selection
+      when "1"
+        students = input_students
+      when "2"
+        print_header
+        print_students(students)
+        print_footer(students)
+      when "9"
+        exit
+      end
+    end
+  end
+  
+interactive_menu
 
-students = input_students  
-print_header
-print_students(students)
-puts print_footer(students)

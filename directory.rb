@@ -30,7 +30,7 @@ def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
   
-  students = []
+  @students = []
   
   name = gets.chomp
   
@@ -54,12 +54,12 @@ def input_students
 
   while !name.empty? do
     #While the name variable is not empty, the following code is repeated. Breaks if nothing is entered.
-    students << {name: name, cohort: cohort, nationality: nationality, height: height}
-    puts "Now we have #{students.count} students"
+    @students << {name: name, cohort: cohort, nationality: nationality, height: height}
+    puts "Now we have #{@students.count} students"
     puts "If necessary, enter another student's details below."
     name = gets.chomp
     if name.empty?
-      students
+      @students
     else
       puts "What cohort are they part of?"
   
@@ -78,17 +78,27 @@ def input_students
         height = gets.chomp
     end
   end  
-    students
+    @students
+end
+
+def print_menu
+  puts "1. input the students"
+  puts "2. show the students"
+  puts "9. exit"
+end
+
+def show_students
+  print_header
+  print_students(@students)
+  print_footer(@students)
 end
 
 def interactive_menu
   
-  students = []
+  @students = []
   
   loop do
-    puts "1. input the students"
-    puts "2. show the students"
-    puts "9. exit"
+    print_menu
     
     selection = gets.chomp
     
@@ -96,9 +106,7 @@ def interactive_menu
       when "1"
         students = input_students
       when "2"
-        print_header
-        print_students(students)
-        print_footer(students)
+        show_students
       when "9"
         exit
       end

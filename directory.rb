@@ -34,19 +34,19 @@ def input_students
   
   @students = []
   
-  name = gets.chomp
+  name = STDIN.gets.chomp
   
   
   puts "What cohort are they part of?"
   
-  cohort = gets.chomp.to_sym
+  cohort = STDIN.gets.chomp.to_sym
     if cohort.empty?
       cohort = "Undecided"
     end
     
   puts "What is their nationality?"
   
-  nationality = gets.chomp
+  nationality = STDIN.gets.chomp
   
   puts "And finally, how tall are they (in centimeters)?"
   
@@ -64,18 +64,18 @@ def input_students
     else
       puts "What cohort are they part of?"
   
-        cohort = gets.chomp.to_sym
+        cohort = STDIN.gets.chomp.to_sym
           if cohort.empty?
             cohort = "Undecided"
           end
     
       puts "What is their nationality?"
   
-        nationality = gets.chomp
+        nationality = STDIN.gets.chomp
   
       puts "And finally, how tall are they (in centimeters)?"
   
-        height = gets.chomp
+        height = STDIN.gets.chomp
     end
   end  
     @students
@@ -114,8 +114,6 @@ end
   
 def interactive_menu
   
-  @students = []
-  
   loop do
     print_menu
     process(STDIN.gets.chomp)
@@ -133,6 +131,11 @@ def save_students
   end
   file.close
 end
+
+def pass_to_students
+  @students << {name: name, cohort: cohort.to_sym}
+end
+
 
 def load_students(filename = "Students.csv")
   file = File.open(filename, "r")

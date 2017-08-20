@@ -1,3 +1,5 @@
+@students = [] #an empty array accessible to all methods
+
 def print_header
   puts "The students of Villains Academy".center(50, "---")
   puts "---------------".center(50)
@@ -105,6 +107,8 @@ def process(selection)
         load_students
       when "9"
         exit
+      else
+        puts "Sorry, I don't recognise that input. Please try again"
   end
 end
   
@@ -114,7 +118,7 @@ def interactive_menu
   
   loop do
     print_menu
-    process(gets.chomp)
+    process(STDIN.gets.chomp)
   end
 end
 
@@ -130,8 +134,8 @@ def save_students
   file.close
 end
 
-def load_students
-  file = File.open("Students.csv", "r")
+def load_students(filename = "Students.csv")
+  file = File.open(filename, "r")
   file.readlines.each do |line|
     name, cohort = line.chomp.split(",")
     @students << {name: name, cohort: cohort.to_sym}
@@ -139,6 +143,19 @@ def load_students
   file.close
 end
 
+def try_load_students
   
+  filename = ARGV.first
+  return if filename.nil?
+  if File.exists?(filename)
+    load_students(filename)
+      puts "Loaded #{@students.count} students from #{filename}."
+  else
+    puts "Sorry, #{filename} does not exist."
+    exit
+  end
+end
+
+try_load_students
 interactive_menu
 
